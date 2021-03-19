@@ -1,17 +1,12 @@
 from django.shortcuts import render, get_object_or_404
 from django.template import loader
 
-# Create your views here.
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from .models import Question, Choice
 
 def index(request):
-    # return HttpResponse("Hello, world. You're at the polls index.")
-
-    # latest_question_list = Question.objects.all()
-    # output = ', '.join([q.question_text for q in latest_question_list])
-    # return HttpResponse(output)
+   
 
     latest_question_list = Question.objects.order_by('-pub_date')[:5]
     template = loader.get_template('pollsapp/index.html')
@@ -22,7 +17,7 @@ def index(request):
 
 
 def detail(request, question_id):
-    # return HttpResponse("You're looking at question %s." % question_id)
+  
     try:
         question = Question.objects.get(pk=question_id)
     except Question.DoesNotExist:
